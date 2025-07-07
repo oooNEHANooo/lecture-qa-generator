@@ -12,6 +12,17 @@ from langchain.output_parsers import PydanticOutputParser
 from pydantic import BaseModel, Field
 import json
 
+
+def build_prompt(content: str, difficulty: str = "中") -> str:
+    return (
+        f"以下は講義の内容です。\n\n{content}\n\n"
+        f"この内容に基づいて、学生の理解度を測るための質問を作成してください。\n"
+        f"質問形式は選択式（複数選択・一択）および記述式を含めてください。\n"
+        f"難易度は「{difficulty}」レベルでお願いします。\n"
+        f"各質問には模範解答も付けてください。"
+    )
+
+
 logger = logging.getLogger(__name__)
 
 
@@ -120,7 +131,10 @@ class QAGenerator:
         """単一の質問を生成"""
         
         try:
-            prompt = self._create_question_prompt(slide_content, difficulty)
+            # prompt = self._create_question_prompt(slide_content, difficulty)
+
+            prompt_text = build_prompt(slide_content.get("content", ""), difficulty.value)
+            prompt = [HumanMessage(content=prompt_text)]
             
             response = self.llm.invoke(prompt)
             
@@ -356,3 +370,7 @@ JSON形式:
                 questions_count -= allocated
         
         return distribution
+    
+    def save_qa_log(lecture_id: str, qa_data: dict):
+        with open(f"qa_log_{lecture_id}.json", "w", encoding="utf-8") as f:
+            json.dump(qa_data, f, ensure_ascii=False, indent=2)
