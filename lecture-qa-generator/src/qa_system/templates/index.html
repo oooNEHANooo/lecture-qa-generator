@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block title %}ホーム - QA System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="jumbotron bg-primary text-white p-5 rounded mb-4">
+            <h1 class="display-4">
+                <i class="fas fa-graduation-cap me-3"></i>
+                講義内容の確認QA作成システム
+            </h1>
+            <p class="lead">
+                PowerPointファイルから自動的に質問を生成し、学生の理解度を測定・分析します。
+            </p>
+            <hr class="my-4">
+            <p>
+                AIを活用した効率的なQA生成で、講義品質の向上をサポートします。
+            </p>
+            <div class="d-flex gap-3">
+                <a class="btn btn-light btn-lg" href="/lectures" role="button">
+                    <i class="fas fa-upload me-2"></i>講義をアップロード
+                </a>
+                <a class="btn btn-outline-light btn-lg" href="/analytics" role="button">
+                    <i class="fas fa-chart-line me-2"></i>分析を見る
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <div class="text-primary mb-3">
+                    <i class="fas fa-file-powerpoint fa-3x"></i>
+                </div>
+                <h5 class="card-title">PowerPoint解析</h5>
+                <p class="card-text">
+                    PowerPointファイルをアップロードして、自動的にスライド内容を抽出・解析します。
+                </p>
+                <a href="/lectures" class="btn btn-primary">
+                    <i class="fas fa-arrow-right me-1"></i>開始
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <div class="text-success mb-3">
+                    <i class="fas fa-robot fa-3x"></i>
+                </div>
+                <h5 class="card-title">AI質問生成</h5>
+                <p class="card-text">
+                    最新のAI技術を使用して、講義内容に基づいた適切な質問を自動生成します。
+                </p>
+                <a href="/questions" class="btn btn-success">
+                    <i class="fas fa-arrow-right me-1"></i>確認
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <div class="text-warning mb-3">
+                    <i class="fas fa-layer-group fa-3x"></i>
+                </div>
+                <h5 class="card-title">難易度調整</h5>
+                <p class="card-text">
+                    易・中・難の3段階で質問の難易度を調整し、学習レベルに応じた問題を提供します。
+                </p>
+                <a href="/questions?difficulty=easy" class="btn btn-warning">
+                    <i class="fas fa-arrow-right me-1"></i>設定
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <div class="text-info mb-3">
+                    <i class="fas fa-chart-pie fa-3x"></i>
+                </div>
+                <h5 class="card-title">理解度分析</h5>
+                <p class="card-text">
+                    学生の回答結果を分析し、理解度を可視化。講義改善のための具体的な提案を提供します。
+                </p>
+                <a href="/analytics" class="btn btn-info">
+                    <i class="fas fa-arrow-right me-1"></i>分析
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <h3 class="mb-4">
+            <i class="fas fa-info-circle me-2"></i>
+            システムの特徴
+        </h3>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-lightning-bolt text-warning fs-4"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6>高速処理</h6>
+                        <p class="text-muted">
+                            講義資料のアップロード後、数分以内にQAを生成・提供します。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-shield-alt text-success fs-4"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6>プライバシー保護</h6>
+                        <p class="text-muted">
+                            学生データの管理において、プライバシー保護を最優先に設計されています。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-sync-alt text-primary fs-4"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6>リアルタイム分析</h6>
+                        <p class="text-muted">
+                            QA実施後、即座に回答結果を収集・分析して表示します。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-question-circle me-2"></i>
+                    よくある質問
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq1">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                                どのようなファイル形式に対応していますか？
+                            </button>
+                        </h2>
+                        <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                現在、PowerPoint形式（.pptx、.ppt）のファイルに対応しています。
+                                最大50MBまでのファイルをアップロードできます。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                                生成される質問の種類は何ですか？
+                            </button>
+                        </h2>
+                        <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                複数選択、単一選択、記述式、短答式の4種類の質問を生成できます。
+                                難易度は易・中・難の3段階で調整可能です。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                                生成された質問は編集できますか？
+                            </button>
+                        </h2>
+                        <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                はい、生成された質問は質問管理画面で編集・削除が可能です。
+                                質問文、正解、解説などを自由に修正できます。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 簡単なアニメーション効果
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+        card.classList.add('fade-in');
+    });
+});
+</script>
+{% endblock %}

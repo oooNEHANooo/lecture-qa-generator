@@ -77,7 +77,6 @@ class QAGenerator:
         num_questions: int = 2,
         difficulty_distribution: Dict[DifficultyLevel, int] = None
     ) -> QASet:
-        slide_content["lecture_id"] = "lec01"  # 追加
         """単一スライドの内容から質問を生成"""
         
         if difficulty_distribution is None:
@@ -143,16 +142,6 @@ class QAGenerator:
             question_data = self._parse_response(response.content)
             
             if question_data:
-                save_qa_log(
-                    lecture_id=slide_content.get("lecture_id", "default"),
-                    qa_data={
-                        "question": question_data.get("question"),
-                        "choices": question_data.get("choices"),
-                        "answer": question_data.get("answer"),
-                        "difficulty": difficulty.value,
-                        "type": question_data.get("type", "選択式")
-                    }
-                )
                 return GeneratedQuestion(**question_data)
             
         except Exception as e:
@@ -383,19 +372,5 @@ JSON形式:
         return distribution
     
     def save_qa_log(lecture_id: str, qa_data: dict):
-        log_path = f"qa_log_{lecture_id}.json"
-        log_entry = {
-            "timestamp": datetime.now().isoformat(),
-            **qa_data
-        }
-
-        if os.path.exists(log_path):
-            with open(log_path, "r", encoding="utf-8") as f:
-                log = json.load(f)
-        else:
-            log = []
-
-        log.append(log_entry)
-
-        with open(log_path, "w", encoding="utf-8") as f:
-            json.dump(log, f, ensure_ascii=False, indent=2)
+        with open(f"qa_log_{lecture_id}.json", "w", encoding="utf-8") as f:
+            json.dump(qa_data, f, ensure_ascii=False, indent=2)
